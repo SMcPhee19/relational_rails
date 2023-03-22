@@ -1,3 +1,3 @@
 class Team < ApplicationRecord
-  has 
+  has_many :players
 end
