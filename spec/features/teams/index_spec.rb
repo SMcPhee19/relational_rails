@@ -18,7 +18,7 @@ RSpec.describe "/teams", type: :feature do
 
     it "displays the name of each team" do
       visit "/teams"
-      save_and_open_page
+      
       expect(page).to have_content("Team Index Page")
       expect(page).to have_content(colorado_avalanche.team_name)
       expect(page).to have_content(seattle_kraken.team_name)

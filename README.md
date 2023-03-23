@@ -31,7 +31,7 @@ As a visitor
 When I visit '/parents'
 Then I see the name of each parent record in the system
 
-[ ] done
+[X] done
 User Story 2, Parent Show 
 
 As a visitor
