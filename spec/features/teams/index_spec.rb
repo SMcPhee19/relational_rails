@@ -6,13 +6,15 @@ RSpec.describe "/teams", type: :feature do
     team_name: "Avalanche",
     stanley_cup_champ: true,
     points: 119,
-    division: "Central" )}
+    division: "Central",
+    created_at: 2.days.ago)}
 
   let!(:seattle_kraken) {Team.create!(city: "Seattle",
     team_name: "Kraken",
     stanley_cup_champ: false,
     points: 60,
-    division: "Pacific" )}
+    division: "Pacific",
+    created_at: 1.days.ago)}
   
   let!(:gabe) {colorado_avalanche.players.create!(name: "Gabriel Landeskog", 
     birthplace: "Stockholm, SWE",
@@ -36,5 +38,19 @@ RSpec.describe "/teams", type: :feature do
       expect(page).to have_content(seattle_kraken.team_name)
     end
   end
+  # User Story 6
+  describe "as a visitor when I visit the team index" do
+    it 'displays teams based on what was created most recently' do
+      visit "/teams"
+      # save_and_open_page
+      expect(seattle_kraken.team_name).to appear_before(colorado_avalanche.team_name)
+    end
+  end
 end
+# User Story 6, Parent Index sorted by Most Recently Created 
+
+# As a visitor
+# When I visit the parent index,
+# I see that records are ordered by most recently created first
+# And next to each of the records I see when it was created
 
