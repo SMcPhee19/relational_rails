@@ -33,8 +33,13 @@ RSpec.describe Team, type: :model do
       position: "Defense")}
 
     it '#most_recent' do
-      # require 'pry'; binding.pry
+      # User Story 6
       expect(Team.most_recent).to eq([seattle_kraken, colorado_avalanche])
+    end
+
+    it '#roster_count' do
+      #User Story 7
+      expect(colorado_avalanche.roster_count).to eq(2)
     end
   end
 
