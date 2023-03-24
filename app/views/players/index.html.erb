@@ -1,0 +1,10 @@
+<h1>Player Index Page</h1>
+<br>
+<% @players.each do |player|%>
+  <h2>Name: <%= player.name %></h2>
+  <p>Birthplace: <%= player.birthplace %></p>
+  <p>League Award Winner: <%= player.league_award_winner %></p>
+  <p>Jersey Number: <%= player.jersey_number %></p>
+  <p>Position: <%= player.position %></p>
+  <br>
+<%end%>

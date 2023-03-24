@@ -40,8 +40,10 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov'
   gem 'rspec-rails'
-  gem 'launchy'
-  
+  gem 'launchy' #save_and_open_page
+  gem 'capybara' #visit /parent/:id/child
+  gem 'orderly'
+  gem 'shoulda-matchers' #test associations/relationships
 end
 
 group :development do
