@@ -1,0 +1,10 @@
+<h1>Colorado Avalanche Players</h1>
+<br>
+<% @players.each do |player| %>
+  <h3>Name: <%= player.name %> </h3>
+  <h3>Birthplace: <%= player.birthplace %> </h3>
+  <h3>League Award Winner: <%= player.league_award_winner %> </h3>
+  <h3>Jersey Number: <%= player.jersey_number %> </h3>
+  <h3>Position: <%= player.position %> </h3>
+  <br>
+<% end %>
