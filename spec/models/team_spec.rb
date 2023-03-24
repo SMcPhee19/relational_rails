@@ -5,13 +5,39 @@ RSpec.describe Team, type: :model do
     it { should have_many :players }
   end
 
+  describe 'class methods' do
+    let!(:colorado_avalanche) {Team.create!(city: "Denver",
+      team_name: "Avalanche",
+      stanley_cup_champ: true,
+      points: 119,
+      division: "Central",
+      created_at: 2.days.ago)}
+  
+    let!(:seattle_kraken) {Team.create!(city: "Seattle",
+      team_name: "Kraken",
+      stanley_cup_champ: false,
+      points: 60,
+      division: "Pacific",
+      created_at: 1.days.ago)}
+    
+    let!(:gabe) {colorado_avalanche.players.create!(name: "Gabriel Landeskog", 
+      birthplace: "Stockholm, SWE",
+      league_award_winner: true,
+      jersey_number: 92,
+      position: "Left Wing",)}
+  
+    let!(:bo) {colorado_avalanche.players.create!(name: "Bowen Byram",
+      birthplace: "Cranbrook, BC, CAN",
+      league_award_winner: false,
+      jersey_number: 4,
+      position: "Defense")}
+
+    it '#most_recent' do
+      # require 'pry'; binding.pry
+      expect(Team.most_recent).to eq([seattle_kraken, colorado_avalanche])
+    end
+  end
+
 
 end
 
-# User Story 5, Parent Children Index 
-
-# As a visitor
-# When I visit '/parents/:parent_id/child_table_name'
-# Then I see each Child that is associated with that Parent with each Child's attributes
-# (data from each column that is on the child table)
-# ActiveRecord
