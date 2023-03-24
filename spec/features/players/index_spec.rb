@@ -4,19 +4,19 @@ require 'rails_helper'
 RSpec.describe "/players", type: :feature do
   #User Story 3
   describe "as a visitor, when I visit the players index page" do
-    let!(:colorado_avalanche) {Team.create(city: "Denver",
+    let!(:colorado_avalanche) {Team.create!(city: "Denver",
       team_name: "Avalanche",
       stanley_cup_champ: true,
       points: 119,
       division: "Central" )}
 
-    let!(:gabe) {colorado_avalanche.players.create(name: "Gabriel Landeskog", 
+    let!(:gabe) {colorado_avalanche.players.create!(name: "Gabriel Landeskog", 
       birthplace: "Stockholm, SWE",
       league_award_winner: true,
       jersey_number: 92,
       position: "Left Wing",)}
 
-    let!(:bo) {colorado_avalanche.players.create(name: "Bowen Byram",
+    let!(:bo) {colorado_avalanche.players.create!(name: "Bowen Byram",
       birthplace: "Cranbrook, BC, CAN",
       league_award_winner: false,
       jersey_number: 4,
