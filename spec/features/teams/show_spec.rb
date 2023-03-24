@@ -15,6 +15,18 @@ RSpec.describe "/parents/:id" do
       points: 60,
       division: "Pacific" )}
 
+    let!(:gabe) {colorado_avalanche.players.create!(name: "Gabriel Landeskog", 
+      birthplace: "Stockholm, SWE",
+      league_award_winner: true,
+      jersey_number: 92,
+      position: "Left Wing",)}
+
+    let!(:bo) {colorado_avalanche.players.create!(name: "Bowen Byram",
+      birthplace: "Cranbrook, BC, CAN",
+      league_award_winner: false,
+      jersey_number: 4,
+      position: "Defense")}
+
     it 'shows team data' do
       # User Story 2
       visit "/teams/#{colorado_avalanche.id}"
@@ -27,10 +39,13 @@ RSpec.describe "/parents/:id" do
       expect(page).to have_content(colorado_avalanche.division)
       expect(page).not_to have_content(seattle_kraken.city)
     end
+
+    it 'shows the count of children' do
+      # User Story 7
+      visit "/teams/#{colorado_avalanche.id}"
+      # save_and_open_page
+      expect(page).to have_content("Roster Size: #{colorado_avalanche.players.count}")
+    end
   end
 end
 
-# As a visitor
-# When I visit '/parents/:id'
-# Then I see the parent with that id including the parent's attributes
-# (data from each column that is on the parent table)
