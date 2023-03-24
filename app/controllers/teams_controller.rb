@@ -1,9 +1,9 @@
 class TeamsController < ApplicationController
- def index
-  @teams = Team.all
+  def index
+    @teams = Team.most_recent
   end
 
   def show
     @teams = Team.find(params[:id])
   end
-endq
+end
