@@ -1,0 +1,11 @@
+<form action="/teams/<%= @teams.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit Team Details</p>
+  City: <input type='text' name="City"/><br/>
+  Team Name:<input type='text' name="Team Name"/><br/>
+  Stanley Cup Champion: <input type='text' name="Stanley Cup Champion"/><br/>
+  Points: <input type='number' name="Points"/><br/>
+  Division: <input type='text' name="Division"/><br/>
+  <input type='submit' value = "Update Team"/>
+</form>
