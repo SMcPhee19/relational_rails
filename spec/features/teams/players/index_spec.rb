@@ -30,7 +30,7 @@ RSpec.describe '/teams/:team_id/players' do
   describe 'when I visit the parents/:parent_id/child talbe' do
     it 'show each child associated with that parent' do
       visit "/teams/#{colorado_avalanche.id}/players"
-      # save_and_open_page
+      
       expect(page).to have_content("Colorado Avalanche Players")
       expect(page).to have_content(gabe.name)
       expect(page).to have_content(gabe.birthplace)
@@ -46,10 +46,3 @@ RSpec.describe '/teams/:team_id/players' do
   end
 end
 
-# User Story 5, Parent Children Index 
-
-# As a visitor
-# When I visit '/parents/:parent_id/child_table_name'
-# Then I see each Child that is associated with that Parent with each Child's attributes
-# (data from each column that is on the child table)
-# ActiveRecord
