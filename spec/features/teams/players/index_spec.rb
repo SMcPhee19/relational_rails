@@ -31,7 +31,7 @@ RSpec.describe '/teams/:team_id/players' do
     it 'show each child associated with that parent' do
       visit "/teams/#{colorado_avalanche.id}/players"
       
-      expect(page).to have_content("Colorado Avalanche Players")
+      expect(page).to have_content("Avalanche Roster")
       expect(page).to have_content(gabe.name)
       expect(page).to have_content(gabe.birthplace)
       expect(page).to have_content(gabe.league_award_winner)
