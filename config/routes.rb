@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get '/players/:id', to: 'players#show'
   get '/teams/:team_id/players', to: 'team_players#index'
   post '/teams', to: 'teams#create'
+  get '/teams/:id/edit', to: 'teams#edit'
+  patch '/teams/:id', to: 'teams#update'
 end
