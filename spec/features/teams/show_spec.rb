@@ -2,31 +2,31 @@
 require 'rails_helper'
 
 RSpec.describe "/parents/:id" do
+  let!(:colorado_avalanche) {Team.create!(city: "Denver",
+    team_name: "Avalanche",
+    stanley_cup_champ: true,
+    points: 119,
+    division: "Central" )}
+  
+  let!(:seattle_kraken) {Team.create!(city: "Seattle",
+    team_name: "Kraken",
+    stanley_cup_champ: false,
+    points: 60,
+    division: "Pacific" )}
+  
+  let!(:gabe) {colorado_avalanche.players.create!(name: "Gabriel Landeskog", 
+    birthplace: "Stockholm, SWE",
+    league_award_winner: true,
+    jersey_number: 92,
+    position: "Left Wing",)}
+  
+  let!(:bo) {colorado_avalanche.players.create!(name: "Bowen Byram",
+    birthplace: "Cranbrook, BC, CAN",
+    league_award_winner: false,
+    jersey_number: 4,
+    position: "Defense")}
+
   describe "as a visitor when I visit the teams show page it shows me thier team info" do
-    let!(:colorado_avalanche) {Team.create!(city: "Denver",
-      team_name: "Avalanche",
-      stanley_cup_champ: true,
-      points: 119,
-      division: "Central" )}
-
-    let!(:seattle_kraken) {Team.create!(city: "Seattle",
-      team_name: "Kraken",
-      stanley_cup_champ: false,
-      points: 60,
-      division: "Pacific" )}
-
-    let!(:gabe) {colorado_avalanche.players.create!(name: "Gabriel Landeskog", 
-      birthplace: "Stockholm, SWE",
-      league_award_winner: true,
-      jersey_number: 92,
-      position: "Left Wing",)}
-
-    let!(:bo) {colorado_avalanche.players.create!(name: "Bowen Byram",
-      birthplace: "Cranbrook, BC, CAN",
-      league_award_winner: false,
-      jersey_number: 4,
-      position: "Defense")}
-
     it 'shows team data' do
       # User Story 2
       visit "/teams/#{colorado_avalanche.id}"
@@ -90,5 +90,61 @@ RSpec.describe "/parents/:id" do
       expect(page).to_not have_content(bo.position)
     end
   end
+
+  describe "update team info" do
+    # User Story 12
+    it 'has a link to update the team' do
+      visit "/teams/#{colorado_avalanche.id}"
+      expect(page).to have_link("Update Team")
+
+      click_link "Update Team"
+      expect(current_path).to eq("/teams/#{colorado_avalanche.id}/edit")
+    end
+
+    it 'has a form to update the team' do
+      visit "/teams/#{colorado_avalanche.id}/edit"
+      # save_and_open_page
+      expect(page).to have_content("Edit Team Details")
+      expect(page).to have_content("City")
+      expect(page).to have_content("Team Name")
+      expect(page).to have_content("Stanley Cup Champion")
+      expect(page).to have_content("Points")
+      expect(page).to have_content("Division")
+    end
+
+    it 'updated the parent info' do
+      visit "/teams/#{colorado_avalanche.id}"
+
+      expect(page).to_not have_content(123)
+
+      visit "/teams/#{colorado_avalanche.id}/edit"
+
+      fill_in("City", with: "Denver")
+      fill_in("Team Name", with: "Avalanche")
+      fill_in("Stanley Cup Champion", with: true)
+      fill_in("Points", with: 123)
+      fill_in("Division", with: "Central")
+
+      click_button("Update Team")
+      expect(current_path).to eq("/teams/#{colorado_avalanche.id}")
+      
+      visit "/teams/#{colorado_avalanche.id}"
+      save_and_open_page
+      expect(page).to have_content(123)
+    end
+  end
 end
+
+# User Story 12, Parent Update 
+
+# As a visitor
+# When I visit a parent show page
+# Then I see a link to update the parent "Update Parent"
+# When I click the link "Update Parent"
+# Then I am taken to '/parents/:id/edit' where I  see a form to edit the parent's attributes:
+# When I fill out the form with updated information
+# And I click the button to submit the form
+# Then a `PATCH` request is sent to '/parents/:id',
+# the parent's info is updated,
+# and I am redirected to the Parent's Show page where I see the parent's updated info
 
