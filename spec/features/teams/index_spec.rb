@@ -46,11 +46,30 @@ RSpec.describe "/teams", type: :feature do
       expect(seattle_kraken.team_name).to appear_before(colorado_avalanche.team_name)
     end
   end
-end
-# User Story 6, Parent Index sorted by Most Recently Created 
 
-# As a visitor
-# When I visit the parent index,
-# I see that records are ordered by most recently created first
-# And next to each of the records I see when it was created
+  # User Story 9
+  describe "as a visitor on any page, I see a link to the parent" do
+    it 'when the team link is clicked it takes you to the team index page' do
+      visit "/teams"
+      click_on "Teams"
+
+      expect(current_path).to eq("/teams")
+
+      visit "/players"
+      click_on "Teams"
+
+      expect(current_path).to eq("/teams")
+
+      visit "/players/#{gabe.id}"
+      click_on "Teams"
+
+      expect(current_path).to eq("/teams")
+
+      visit "/teams/#{colorado_avalanche.id}"
+      click_on "Teams"
+
+      expect(current_path).to eq("/teams")
+    end
+  end
+end
 

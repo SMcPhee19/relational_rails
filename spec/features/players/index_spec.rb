@@ -38,7 +38,32 @@ RSpec.describe "/players", type: :feature do
       expect(page).to have_content("Jersey Number: #{bo.jersey_number}")
       expect(page).to have_content("Position: #{bo.position}")
     end
+
+    # User Story 8
+    it "I see a link to the child index" do
+      visit "/players"
+      click_on "Players"
+
+      expect(current_path).to eq("/players")
+
+      visit "/teams"
+      click_on "Players"
+
+      expect(current_path).to eq("/players")
+
+      visit "/players/#{gabe.id}"
+      click_on "Players"
+
+      expect(current_path).to eq("/players")
+
+      visit "/teams/#{colorado_avalanche.id}"
+      click_on "Players"
+
+      expect(current_path).to eq("/players")
+    end
   end
 end
+
+
 
 

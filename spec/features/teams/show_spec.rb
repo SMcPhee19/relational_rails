@@ -46,6 +46,49 @@ RSpec.describe "/parents/:id" do
       # save_and_open_page
       expect(page).to have_content("Roster Size: #{colorado_avalanche.players.count}")
     end
+    it "shows a link to the parent/child index and takes you to the correct place" do
+      # User Stroy 10
+      visit "/teams/#{colorado_avalanche.id}"
+
+      expect(page).to have_content("Roster")
+
+      click_on "Roster"
+
+      expect(current_path).to eq("/teams/#{colorado_avalanche.id}/players")
+      expect(page).to have_content("Avalanche Roster")
+      expect(page).to have_content(gabe.name)
+      expect(page).to have_content(gabe.birthplace)
+      expect(page).to have_content(gabe.league_award_winner)
+      expect(page).to have_content(gabe.jersey_number)
+      expect(page).to have_content(gabe.position)
+      expect(page).to have_content(bo.name)
+      expect(page).to have_content(bo.birthplace)
+      expect(page).to have_content(bo.league_award_winner)
+      expect(page).to have_content(bo.jersey_number)
+      expect(page).to have_content(bo.position)
+    end
+
+    it 'doesnt take you to the wrong page' do
+      visit "/teams/#{seattle_kraken.id}"
+
+      expect(page).to have_content("Roster")
+
+      click_on "Roster"
+
+      expect(current_path).to eq("/teams/#{seattle_kraken.id}/players")
+      expect(page).to have_content("Kraken Roster")
+      expect(page).to_not have_content("Avalanche Roster")
+      expect(page).to_not have_content(gabe.name)
+      expect(page).to_not have_content(gabe.birthplace)
+      expect(page).to_not have_content(gabe.league_award_winner)
+      expect(page).to_not have_content(gabe.jersey_number)
+      expect(page).to_not have_content(gabe.position)
+      expect(page).to_not have_content(bo.name)
+      expect(page).to_not have_content(bo.birthplace)
+      expect(page).to_not have_content(bo.league_award_winner)
+      expect(page).to_not have_content(bo.jersey_number)
+      expect(page).to_not have_content(bo.position)
+    end
   end
 end
 
