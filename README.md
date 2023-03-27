@@ -133,7 +133,7 @@ Then a `PATCH` request is sent to '/parents/:id',
 the parent's info is updated,
 and I am redirected to the Parent's Show page where I see the parent's updated info
 
-[ ] done
+[X] done
 User Story 13, Parent Child Creation 
 
 As a visitor
@@ -197,3 +197,17 @@ When I visit the `child_table_name` index page or a parent `child_table_name` in
 Next to every child, I see a link to edit that child's info
 When I click the link
 I should be taken to that `child_table_name` edit page where I can update its information just like in User Story 14
+
+
+
+
+<form action="/teams/<%= @team_players.id %>/players/new" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p>New Player Information:</p>
+  Name: <input type='text' name="Name"/><br/>
+  Birthplace:<input type='text' name="Birthplace"/><br/>
+  League Award Winner: <input type='text' name="League Award Winner"/><br/>
+  Jersey Number: <input type='number' name="Jersey Number"/><br/>
+  Position: <input type='text' name="Position"/><br/>
+  <input type='submit' value = "Create New Player"/>
+</form>
