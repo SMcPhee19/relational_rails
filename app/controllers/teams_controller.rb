@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   end
 
   def create
-    require 'pry'; binding.pry
+    # require 'pry'; binding.pry
     team = Team.create!({
       city: params["City"],
       team_name: params["Team Name"],
