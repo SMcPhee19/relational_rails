@@ -1,0 +1,14 @@
+<form action="/players/<%= @players.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <p>Edit Player Details</p>
+  Name: <input type='text' name="Name"/><br/>
+  Birthplace:<input type='text' name="Birthplace"/><br/>
+  League Award Winner: <br><input type='radio' name="league_award_winner_true"/><br/>
+  <label for="league_award_winner_true">TRUE</label><br/>
+  <input type='radio' id="league_award_winner_false"/><br/>
+  <label for="league_award_winner_false">FALSE</label><br>
+  Jersey Number: <input type='number' name="Jersey Number"/><br/>
+  Position: <input type='text' name="Position"/><br/>
+  <input type='submit' value = "Update Player"/>
+</form>
