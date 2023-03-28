@@ -42,7 +42,5 @@ RSpec.describe Team, type: :model do
       expect(colorado_avalanche.roster_count).to eq(2)
     end
   end
-
-
 end
 
