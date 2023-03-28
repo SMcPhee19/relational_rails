@@ -43,7 +43,7 @@ RSpec.describe "/parents/:id" do
     it 'shows the count of children' do
       # User Story 7
       visit "/teams/#{colorado_avalanche.id}"
-      # save_and_open_page
+      
       expect(page).to have_content("Roster Size: #{colorado_avalanche.players.count}")
     end
     it "shows a link to the parent/child index and takes you to the correct place" do
@@ -103,7 +103,7 @@ RSpec.describe "/parents/:id" do
 
     it 'has a form to update the team' do
       visit "/teams/#{colorado_avalanche.id}/edit"
-      # save_and_open_page
+      
       expect(page).to have_content("Edit Team Details")
       expect(page).to have_content("City")
       expect(page).to have_content("Team Name")
@@ -129,7 +129,7 @@ RSpec.describe "/parents/:id" do
       expect(current_path).to eq("/teams/#{colorado_avalanche.id}")
       
       visit "/teams/#{colorado_avalanche.id}"
-      save_and_open_page
+      
       expect(page).to have_content(123)
     end
   end
