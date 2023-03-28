@@ -147,7 +147,7 @@ Then a `POST` request is sent to '/parents/:parent_id/child_table_name',
 a new child object/row is created for that parent,
 and I am redirected to the Parent Childs Index page where I can see the new child listed
 
-[ ] done
+[X] done
 User Story 14, Child Update 
 
 As a visitor
@@ -162,7 +162,7 @@ and I am redirected to the Child Show page where I see the Child's updated infor
 
 ActiveRecord
 
-[ ] done
+[X] done
 User Story 15, Child Index only shows `true` Records 
 
 As a visitor
