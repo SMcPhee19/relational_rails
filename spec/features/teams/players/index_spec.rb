@@ -50,7 +50,7 @@ RSpec.describe '/teams/:team_id/players' do
     it 'has a link to add new player' do
       visit "/teams/#{colorado_avalanche.id}/players"
 
-      expect(page).to have_content("Add New Player")
+      expect(page).to have_content("Create Player")
     end
 
     it 'the link takes me to a form to add a new player' do
@@ -71,7 +71,7 @@ RSpec.describe '/teams/:team_id/players' do
       expect(page).to_not have_content("Cale Makar")
       
       visit "/teams/#{colorado_avalanche.id}/players/new"
-      # save_and_open_page
+    
       
       fill_in("Name", with: "Cale Makar")
       fill_in("Birthplace", with: "Calgary, AB, CAN")
