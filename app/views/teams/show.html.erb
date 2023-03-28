@@ -9,5 +9,7 @@
 <h3>Stanley Cup Champion: <%= @teams.stanley_cup_champ %> </h3>
 <h3>Points: <%= @teams.points %> </h3>
 <h3>Division: <%= @teams.division %> </h3>
+<br>
+<%= link_to "Update Team", "/teams/#{@teams.id}/edit" %>
 
 

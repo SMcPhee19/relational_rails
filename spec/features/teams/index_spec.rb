@@ -42,7 +42,6 @@ RSpec.describe "/teams", type: :feature do
   describe "as a visitor when I visit the team index" do
     it 'displays teams based on what was created most recently' do
       visit "/teams"
-      # save_and_open_page
       expect(seattle_kraken.team_name).to appear_before(colorado_avalanche.team_name)
     end
   end
@@ -71,5 +70,48 @@ RSpec.describe "/teams", type: :feature do
       expect(current_path).to eq("/teams")
     end
   end
-end
 
+  # User Story 11
+  describe 'create new' do
+    it 'shows a link to create a new parent' do
+      visit '/teams'
+      expect(page).to have_content("New Team")
+    end
+
+    it 'the link takes you to the expected page' do
+      visit '/teams'
+      click_on "New Team"
+
+      expect(current_path).to eq("/teams/new")
+    end
+
+    it 'has a form to create a new parent' do
+      visit "/teams/new"
+
+      expect(page).to have_content("Enter a new team")
+      expect(page).to have_content("City")
+      expect(page).to have_content("Team Name")
+      expect(page).to have_content("Stanley Cup Champion")
+      expect(page).to have_content("Points")
+      expect(page).to have_content("Division")
+    end
+
+    it 'created a new parent' do
+      visit "/teams"
+      expect(page).to_not have_content("Coyotes")
+
+      visit "/teams/new"
+      fill_in("City", with: "Tempe")
+      fill_in("Team Name", with: "Coyotes")
+      fill_in("Stanley Cup Champion", with: false)
+      fill_in("Points", with: 57)
+      fill_in("Division", with: "Central")
+
+      click_button("Create Team")
+      expect(current_path).to eq("/teams")
+
+      visit "/teams"
+      expect(page).to have_content("Coyotes")
+    end
+  end
+end
