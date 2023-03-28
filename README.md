@@ -1,3 +1,4 @@
+(https://user-images.githubusercontent.com/120869196/228391026-7a9c5ea7-421b-45a9-bb3c-fb3f3f940c53.png)
 Teams can have many players
 Table -> Teams
 - auto-generated ID (PRIMARY KEY)
@@ -185,7 +186,8 @@ User Story 17, Parent Update From Parent Index Page
 
 As a visitor
 When I visit the parent index page
-Next to every parent, I see a link to edit that parent's info
+Next to every parent, I see a link to edit that parent's info![Screenshot 2023-03-21 at 4 40 46 PM]
+
 When I click the link
 I should be taken to that parent's edit page where I can update its information just like in User Story 12
 
